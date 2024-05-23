@@ -1,6 +1,7 @@
 package net.merchantpug.bovinesandbuttercups.util;
 
 import com.mojang.datafixers.util.Either;
+import net.merchantpug.bovinesandbuttercups.BovinesAndButtercups;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -10,7 +11,7 @@ import net.minecraft.world.level.biome.Biome;
 
 public class HolderUtil {
     public static boolean containsBiomeHolder(Holder<Biome> biomeHolder, PsuedoHolder<Biome> psuedoHolder) {
-        return psuedoHolder.contains(CodecUtil.getRegistryAccess(), biomeHolder);
+        return psuedoHolder.contains(BovinesAndButtercups.getRegistryAccess(), biomeHolder);
     }
 
     public record PsuedoHolder<T>(ResourceKey<Registry<T>> registry, Either<ResourceKey<T>, TagKey<T>> key) {

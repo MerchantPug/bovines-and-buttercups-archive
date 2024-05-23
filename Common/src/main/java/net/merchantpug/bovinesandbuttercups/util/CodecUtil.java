@@ -51,11 +51,4 @@ public class CodecUtil {
                         });
     }
 
-    public static RegistryAccess getRegistryAccess() {
-        if (BovinesAndButtercups.getServer() != null) {
-            return BovinesAndButtercups.getServer().registryAccess();
-        }
-        return null;
-    }
-
 }

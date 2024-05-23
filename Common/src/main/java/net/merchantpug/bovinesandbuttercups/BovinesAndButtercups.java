@@ -1,10 +1,12 @@
 package net.merchantpug.bovinesandbuttercups;
 
+import net.merchantpug.bovinesandbuttercups.client.util.ClientRegistryAccess;
 import net.merchantpug.bovinesandbuttercups.platform.Services;
 import net.merchantpug.bovinesandbuttercups.registry.*;
 import net.merchantpug.bovinesandbuttercups.registry.condition.BovineBiomeConditionTypes;
 import net.merchantpug.bovinesandbuttercups.registry.condition.BovineBlockConditionTypes;
 import net.merchantpug.bovinesandbuttercups.registry.condition.BovineEntityConditionTypes;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +39,14 @@ public class BovinesAndButtercups {
 
     public static MinecraftServer getServer() {
         return Services.PLATFORM.getServer();
+    }
+
+    public static RegistryAccess getRegistryAccess() {
+        MinecraftServer server = Services.PLATFORM.getServer();
+        if (server == null || server.isDedicatedServer()) {
+            return ClientRegistryAccess.registryAccess();
+        }
+        return Services.PLATFORM.getServer().registryAccess();
     }
 
     public static ResourceLocation asResource(String path) {
