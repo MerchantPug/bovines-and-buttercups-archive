@@ -11,7 +11,7 @@ import net.minecraft.world.level.biome.Biome;
 
 public class HolderUtil {
     public static boolean containsBiomeHolder(Holder<Biome> biomeHolder, PsuedoHolder<Biome> psuedoHolder) {
-        return psuedoHolder.contains(BovinesAndButtercups.getRegistryAccess(), biomeHolder);
+        return psuedoHolder.contains(BovinesAndButtercups.getServer().registryAccess(), biomeHolder);
     }
 
     public record PsuedoHolder<T>(ResourceKey<Registry<T>> registry, Either<ResourceKey<T>, TagKey<T>> key) {

@@ -40,15 +40,6 @@ public class BovinesAndButtercups {
     public static MinecraftServer getServer() {
         return Services.PLATFORM.getServer();
     }
-
-    public static RegistryAccess getRegistryAccess() {
-        MinecraftServer server = Services.PLATFORM.getServer();
-        if (server == null || server.isDedicatedServer()) {
-            return ClientRegistryAccess.registryAccess();
-        }
-        return Services.PLATFORM.getServer().registryAccess();
-    }
-
     public static ResourceLocation asResource(String path) {
         return new ResourceLocation(MOD_ID, path);
     }
