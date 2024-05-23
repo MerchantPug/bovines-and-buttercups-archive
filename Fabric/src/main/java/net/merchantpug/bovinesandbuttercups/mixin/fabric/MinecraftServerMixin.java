@@ -7,9 +7,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(MinecraftServer.class)
+@Mixin(value = MinecraftServer.class, priority = 500)
 public class MinecraftServerMixin {
-    @Inject(method = "<init>", at = @At(value = "TAIL"))
+    @Inject(method = "<init>", at = @At("RETURN"))
     private void bovinesandbuttercups$setServer(CallbackInfo ci) {
         BovinesAndButtercupsFabric.setServer((MinecraftServer)(Object)this);
     }

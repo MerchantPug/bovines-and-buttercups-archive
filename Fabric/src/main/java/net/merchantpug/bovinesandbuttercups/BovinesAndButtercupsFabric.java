@@ -68,7 +68,6 @@ public class BovinesAndButtercupsFabric implements ModInitializer {
 
         CommandRegistrationCallback.EVENT.register((dispatcher, context, selection) -> EffectLockdownCommand.register(dispatcher, context));
 
-        ServerLifecycleEvents.SERVER_STARTING.register(BovinesAndButtercupsFabric::setServer);
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> BovinesAndButtercupsFabric.setServer(null));
 
         ServerEntityEvents.ENTITY_LOAD.register((entity, level) -> {
