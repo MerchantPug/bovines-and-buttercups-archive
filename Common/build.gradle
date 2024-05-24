@@ -82,8 +82,8 @@ publications {
 
 repositories {
     maven {
-        name = "merchantpug"
-        url = "https://maven.merchantpug.net/releases"
+        name = "greenhouse"
+        url = "https://maven.greenhouseteam.dev/releases"
         credentials(PasswordCredentials)
         authentication {
             create("basic", BasicAuthentication)
