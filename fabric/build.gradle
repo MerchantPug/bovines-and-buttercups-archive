@@ -164,6 +164,7 @@ tasks.register('curseforge', TaskPublishCurseForge) {
     mainFile.changelog = new File("$project.rootDir/CHANGELOG.md").getText('UTF-8')
     mainFile.changelogType = "markdown"
     mainFile.addModLoader('Fabric')
+    mainFile.addModLoader('Quilt')
     java_versions.split(", ").each {
         mainFile.addJavaVersion(it)
     }
@@ -198,7 +199,7 @@ modrinth {
     changelog = new File("$project.rootDir/CHANGELOG.md").getText('UTF-8')
     uploadFile = remapJar
     gameVersions = fabric_game_versions.split(", ").toList()
-    loaders = [ "fabric" ]
+    loaders = [ "fabric", "quilt" ]
     dependencies {
         fabric_required_deps.split(", ").each { String project ->
             required.project project
