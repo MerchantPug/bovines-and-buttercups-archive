@@ -210,7 +210,7 @@ tasks.register('curseforge', TaskPublishCurseForge) {
     apiToken = System.getenv("CURSEFORGE_TOKEN")
 
     def mainFile = upload(cf_project_id, jar)
-    mainFile.displayName = "Forge v${rootProject.version}+${minecraft_version}"
+    mainFile.displayName = "Forge v${project.version}"
     mainFile.releaseType = "release"
     mainFile.changelog = new File("$project.rootDir/CHANGELOG.md").getText('UTF-8')
     mainFile.changelogType = "markdown"
