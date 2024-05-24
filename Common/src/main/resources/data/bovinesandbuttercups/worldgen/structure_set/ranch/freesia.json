@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "bovinesandbuttercups:ranch/freesia",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 24,
+    "separation": 6,
+    "salt": 328794729
+  }
+}
