@@ -13,8 +13,8 @@ Please check out the [Wiki](https://github.com/MerchantPug/bovines-and-buttercup
 ```groovy
 repositories {
     maven {
-        name = "Pug's Maven"
-        url = 'https://maven.merchantpug.net/releases/'
+        name = "Greenhouse"
+        url = 'https://maven.greenhouseteam.dev/releases/'
     }
 }
 
