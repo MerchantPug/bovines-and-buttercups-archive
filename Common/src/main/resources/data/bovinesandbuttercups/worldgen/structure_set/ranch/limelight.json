@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "bovinesandbuttercups:ranch/limelight",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 24,
+    "separation": 6,
+    "salt": 894516212
+  }
+}

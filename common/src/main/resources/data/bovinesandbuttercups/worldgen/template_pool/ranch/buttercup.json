@@ -1,0 +1,15 @@
+{
+  "name": "bovinesandbuttercups:ranch/buttercup",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "bovinesandbuttercups:ranch/buttercup",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

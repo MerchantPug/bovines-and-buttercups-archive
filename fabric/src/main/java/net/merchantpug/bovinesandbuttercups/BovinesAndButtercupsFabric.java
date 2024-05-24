@@ -14,8 +14,7 @@ import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.merchantpug.bovinesandbuttercups.api.BovineRegistryUtil;
 import net.merchantpug.bovinesandbuttercups.api.type.ConfiguredCowType;
-import net.merchantpug.bovinesandbuttercups.component.BovineEntityComponents;
-import net.merchantpug.bovinesandbuttercups.component.MushroomCowTypeComponent;
+import net.merchantpug.bovinesandbuttercups.attachment.api.MushroomCowTypeApi;
 import net.merchantpug.bovinesandbuttercups.content.command.EffectLockdownCommand;
 import net.merchantpug.bovinesandbuttercups.data.ConfiguredCowTypeRegistry;
 import net.merchantpug.bovinesandbuttercups.data.FlowerTypeRegistry;
@@ -71,19 +70,19 @@ public class BovinesAndButtercupsFabric implements ModInitializer {
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> BovinesAndButtercupsFabric.setServer(null));
 
         ServerEntityEvents.ENTITY_LOAD.register((entity, level) -> {
-            if (BovineEntityComponents.MUSHROOM_COW_TYPE_COMPONENT.isProvidedBy(entity)) {
-                MushroomCowTypeComponent component = BovineEntityComponents.MUSHROOM_COW_TYPE_COMPONENT.get(entity);
-                if (component.getMushroomCowTypeKey() == null || component.getMushroomCowTypeKey().equals(BovinesAndButtercups.asResource("missing_mooshroom"))) {
+            MushroomCowTypeApi api = BovineEntityApis.MOOSHROOM_TYPE.find(entity, null);
+            if (api != null) {
+                if (api.getTypeKey().isEmpty() || api.getTypeKey().equals(BovinesAndButtercups.asResource("missing_mooshroom"))) {
                     if (MushroomCowSpawnUtil.getTotalSpawnWeight(level, entity.blockPosition()) > 0) {
-                        component.setMushroomCowType(MushroomCowSpawnUtil.getMooshroomSpawnTypeDependingOnBiome(level, entity.blockPosition(), level.getRandom()));
+                        api.setMushroomType(MushroomCowSpawnUtil.getMooshroomSpawnTypeDependingOnBiome(level, entity.blockPosition(), level.getRandom()));
                     } else if (BovineRegistryUtil.configuredCowTypeStream().anyMatch(cct -> cct.configuration() instanceof MushroomCowConfiguration mcct && mcct.usesVanillaSpawningHack()) && level.getBiome(entity.blockPosition()).is(Biomes.MUSHROOM_FIELDS)) {
                         if (((MushroomCow)entity).getVariant().equals(MushroomCow.MushroomType.BROWN)) {
-                            component.setMushroomCowType(BovinesAndButtercups.asResource("brown_mushroom"));
+                            api.setMushroomType(BovinesAndButtercups.asResource("brown_mushroom"));
                         } else {
-                            component.setMushroomCowType(BovinesAndButtercups.asResource("red_mushroom"));
+                            api.setMushroomType(BovinesAndButtercups.asResource("red_mushroom"));
                         }
                     } else {
-                        component.setMushroomCowType(MushroomCowSpawnUtil.getMooshroomSpawnType(level.getRandom(), ((MushroomCow)entity).getVariant()));
+                        api.setMushroomType(MushroomCowSpawnUtil.getMooshroomSpawnType(level.getRandom(), ((MushroomCow)entity).getVariant()));
                     }
                 }
             }
@@ -114,7 +113,7 @@ public class BovinesAndButtercupsFabric implements ModInitializer {
             });
 
             var packet = new SyncDatapackContentsPacket(configuredCowTypeMap, flowerTypeMap, mushroomTypeMap);
-            ServerPlayNetworking.send(player, packet.getId(), packet.toBuf());
+            ServerPlayNetworking.send(player, packet.id(), packet.toBuf());
         });
 
         createBiomeModifications(BovinesAndButtercups.asResource("moobloom"),

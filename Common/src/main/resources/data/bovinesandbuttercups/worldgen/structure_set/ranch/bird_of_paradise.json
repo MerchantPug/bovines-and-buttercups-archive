@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "bovinesandbuttercups:ranch/bird_of_paradise",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 24,
+    "separation": 6,
+    "salt": 984156212
+  }
+}
