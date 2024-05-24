@@ -16,5 +16,5 @@
   },
   "max_distance_from_center": 14,
   "allowed_features": "#bovinesandbuttercups:ranch_allowed",
-  "generates_in_fluids": false
+  "generate_in_fluids": false
 }
