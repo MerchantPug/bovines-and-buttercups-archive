@@ -1,3 +1,2 @@
-## Bugfixes
-- Fixed Limelight Moobloom ranches generating in water.
-- Fixed Limelight Moobloom ranches having a potential escape route.
+## Lang
+- Added Simplified Chinese language support ([#24](https://github.com/MerchantPug/bovines-and-buttercups/pull/24) - Nuttar2004).
