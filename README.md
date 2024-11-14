@@ -14,7 +14,7 @@ Please check out the [Wiki](https://github.com/MerchantPug/bovines-and-buttercup
 repositories {
     maven {
         name = "Greenhouse"
-        url = 'https://maven.greenhouseteam.dev/releases/'
+        url = 'https://repo.greenhouse.house/releases/'
     }
 }
 
