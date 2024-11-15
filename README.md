@@ -7,6 +7,11 @@ You can download the mod on [CurseForge](https://www.curseforge.com/minecraft/mc
 ### Datapack/Addon/Integration Creation
 Please check out the [Wiki](https://github.com/MerchantPug/bovines-and-buttercups/wiki) for more information on how to get started with these topics.
 
+> [!WARNING]
+> Bovines and Buttercups post version 2.0.0 has been moved to the [GreenhouseModding/bovines-and-buttercups](https://github.com/GreenhouseModding/bovines-and-buttercups/) Git Repo.
+> Please report anything found within that version there.
+
+
 ### Implementing this mod into your project
 
 **build.gradle**
