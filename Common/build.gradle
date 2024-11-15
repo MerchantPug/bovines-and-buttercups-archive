@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.spongepowered.gradle.vanilla' version '0.2.1-SNAPSHOT'
+    id 'org.spongepowered.gradle.vanilla' version '0.2.+'
     id 'maven-publish'
     id "com.github.breadmoirai.github-release" version "2.4.1"
 }
@@ -25,9 +25,6 @@ minecraft {
 
 repositories {
     maven {
-        url 'https://jitpack.io'
-    }
-    maven {
         // location of the maven that hosts JEI files since January 2023
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
@@ -47,13 +44,14 @@ repositories {
             includeGroup 'maven.modrinth'
         }
     }
+    mavenCentral()
 }
 
 dependencies {
     compileOnly group: 'org.spongepowered', name:'mixin', version:'0.8.5'
     compileOnly group: 'org.ow2.asm', name: 'asm-tree', version: '9.4'
 
-    compileOnly(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${mixin_extras_version}"))
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixin_extras_version}"))
 
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
 

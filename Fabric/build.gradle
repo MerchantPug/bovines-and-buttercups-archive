@@ -1,7 +1,7 @@
 import net.darkhax.curseforgegradle.TaskPublishCurseForge
 
 plugins {
-    id 'fabric-loom' version '1.2-SNAPSHOT'
+    id 'fabric-loom' version '1.6-SNAPSHOT'
     id 'maven-publish'
     id 'idea'
     id "net.darkhax.curseforgegradle" version "1.0.7"
@@ -13,9 +13,6 @@ archivesBaseName = "${artifact_name}-Fabric"
 repositories {
     maven {
         url "https://maven.terraformersmc.com/"
-    }
-    maven {
-        url 'https://jitpack.io'
     }
     maven {
         name = 'Ladysnake Mods'
@@ -39,6 +36,7 @@ repositories {
         url = "https://modmaven.dev"
     }
     maven { url "https://maven.shedaniel.me/" }
+    mavenCentral()
 }
 
 
@@ -88,7 +86,7 @@ dependencies {
         exclude(group: "net.fabricmc")
     }
 
-    include(modApi(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:${mixin_extras_version}")))
+    include(modApi(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${mixin_extras_version}")))
 
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     compileOnly group: 'com.google.auto.service', name: 'auto-service', version: '1.0.1'

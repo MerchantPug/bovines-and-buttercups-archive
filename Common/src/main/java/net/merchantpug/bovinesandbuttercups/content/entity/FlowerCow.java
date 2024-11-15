@@ -8,6 +8,7 @@ import net.merchantpug.bovinesandbuttercups.content.block.CustomFlowerBlock;
 import net.merchantpug.bovinesandbuttercups.content.block.entity.CustomFlowerBlockEntity;
 import net.merchantpug.bovinesandbuttercups.content.block.entity.CustomFlowerPotBlockEntity;
 import net.merchantpug.bovinesandbuttercups.content.particle.BloomParticleOptions;
+import net.merchantpug.bovinesandbuttercups.data.ConfiguredCowTypeRegistry;
 import net.merchantpug.bovinesandbuttercups.data.entity.BreedingConditionConfiguration;
 import net.merchantpug.bovinesandbuttercups.data.entity.FlowerCowConfiguration;
 import net.merchantpug.bovinesandbuttercups.content.item.NectarBowlItem;
@@ -160,7 +161,6 @@ public class FlowerCow extends Cow {
                 this.setPreviousTypeId(this.getTypeId());
 
                 List<CowTypeConfiguration.WeightedConfiguredCowType> compatibleList = new ArrayList<>();
-                int totalWeight = 0;
 
                 for (CowTypeConfiguration.WeightedConfiguredCowType weightedCowType : this.getFlowerCowType().configuration().getSettings().thunderConverts().get()) {
                     if (weightedCowType.getConfiguredCowType().isEmpty()) {
@@ -182,6 +182,7 @@ public class FlowerCow extends Cow {
                 } else if (compatibleList.size() == 1) {
                     this.setFlowerType(compatibleList.get(0).configuredCowTypeResource().toString());
                 } else {
+                    int totalWeight = level.getRandom().nextInt(compatibleList.stream().map(CowTypeConfiguration.WeightedConfiguredCowType::weight).reduce(Integer::sum).orElse(0));
                     for (CowTypeConfiguration.WeightedConfiguredCowType cct : compatibleList) {
                         totalWeight -= cct.weight();
                         if (totalWeight <= 0) {

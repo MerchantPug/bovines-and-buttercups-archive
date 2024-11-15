@@ -52,7 +52,6 @@ public abstract class MushroomCowMixin extends EntitySuperMixin {
             Services.COMPONENT.setPreviousMushroomCowType(cow, Services.COMPONENT.getMushroomCowTypeKeyFromCow(cow));
 
             List<CowTypeConfiguration.WeightedConfiguredCowType> compatibleList = new ArrayList<>();
-            int totalWeight = 0;
 
             for (CowTypeConfiguration.WeightedConfiguredCowType weightedCowType : Services.COMPONENT.getMushroomCowTypeFromCow(cow).configuration().getSettings().thunderConverts().get()) {
                 if (weightedCowType.getConfiguredCowType().isEmpty()) {
@@ -74,6 +73,7 @@ public abstract class MushroomCowMixin extends EntitySuperMixin {
             } else if (compatibleList.size() == 1) {
                 Services.COMPONENT.setMushroomCowType(cow, compatibleList.get(0).configuredCowTypeResource());
             } else {
+                int totalWeight = level.getRandom().nextInt(compatibleList.stream().map(CowTypeConfiguration.WeightedConfiguredCowType::weight).reduce(Integer::sum).orElse(0));
                 for (CowTypeConfiguration.WeightedConfiguredCowType cct : compatibleList) {
                     totalWeight -= cct.weight();
                     if (totalWeight <= 0) {

@@ -167,7 +167,7 @@ public class MushroomCowChildTypeUtil {
             VoxelShape shape = state.getShape(level, pos);
             if (shape.isEmpty()) return;
             AABB blockBox = shape.bounds();
-            createParticleTrail(parent, blockBox.getCenter().add(new Vec3(pos.getX(), pos.getY(), pos.getZ())), new ShroomParticleOptions(configuration.getColor().get()));
+            createParticleTrail(parent, blockBox.getCenter().add(Vec3.atLowerCornerOf(pos)), new ShroomParticleOptions(configuration.getColor().get()));
         });
     }
 
